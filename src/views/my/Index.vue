@@ -1,64 +1,70 @@
 <template>
   <div class="container">
     <!--  //  未登录页面-->
-      <div v-if="!userState" class="container-login">
-        <div class="header-not-login" @click="this.$router.push('/login')">
-          <van-image
-              class="login-img"
-              round
-              width="10rem"
-              height="10rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <span class="login-text">注册/登录</span>
-        </div>
+    <div v-if="!userState" class="container-login">
+      <div class="header-not-login" @click="this.$router.push('/login')">
+        <van-image
+            class="login-img"
+            round
+            width="10rem"
+            height="10rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <span class="login-text">注册/登录</span>
+      </div>
     </div>
-<!--    // 已登录页面-->
-    <div  v-else class="container-login">
+    <!--    // 已登录页面-->
+    <div v-else class="container-login">
 
-        <div class="header-login">
-          <van-image
-              class="login-img"
-              round
-              width="10rem"
-              height="10rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <div class="login-title">
-            <span class="login-text">博学谷头条号</span>
-          </div>
-          <div class="login-edit">
-            <van-button round size="small" type="primary">编辑资料</van-button>
-          </div>
+      <div class="header-login">
+        <van-image
+            class="login-img"
+            round
+            width="10rem"
+            height="10rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <div class="login-title">
+          <span class="login-text">博学谷头条号</span>
         </div>
-        <div class="bottom-login">
-          <div class="bottom-item">
-            <span class="item-num">10</span>
-            <span class="item-text">头条</span>
-          </div>
-          <div class="bottom-item">
-            <span class="item-num">10</span>
-            <span class="item-text">关注</span>
-          </div>
-          <div class="bottom-item">
-            <span class="item-num">10</span>
-            <span class="item-text">粉丝</span>
-          </div>
-          <div class="bottom-item">
-            <span class="item-num">10</span>
-            <span class="item-text">获赞</span>
-          </div>
+        <div class="login-edit">
+          <van-button round size="small" type="primary">编辑资料</van-button>
         </div>
+      </div>
+      <div class="bottom-login">
+        <div class="bottom-item">
+          <span class="item-num">10</span>
+          <span class="item-text">头条</span>
+        </div>
+        <div class="bottom-item">
+          <span class="item-num">10</span>
+          <span class="item-text">关注</span>
+        </div>
+        <div class="bottom-item">
+          <span class="item-num">10</span>
+          <span class="item-text">粉丝</span>
+        </div>
+        <div class="bottom-item">
+          <span class="item-num">10</span>
+          <span class="item-text">获赞</span>
+        </div>
+      </div>
     </div>
-      <van-grid :column-num="2" clickable>
-        <van-grid-item icon="star-o" text="收藏"/>
-        <van-grid-item icon="clock-o" text="历史"/>
-      </van-grid>
-      <van-cell-group>
-        <van-cell title="消息通知" is-link/>
-        <van-cell title="小智同学" is-link/>
-      </van-cell-group>
-      <van-button @click="this.$router.push('/login')" v-if="userState" class="logout" type="default">退出登录</van-button>
+    <van-grid :column-num="2" clickable>
+      <van-grid-item icon="star-o" text="收藏"/>
+      <van-grid-item icon="clock-o" text="历史"/>
+    </van-grid>
+    <van-cell-group>
+      <van-cell title="消息通知" is-link/>
+      <van-cell title="小智同学" is-link/>
+    </van-cell-group>
+    <van-button
+        @click="this.$router.push('/login')"
+        v-if="userState"
+        class="logout"
+        type="default"
+    >退出登录
+    </van-button>
 
   </div>
 </template>
@@ -66,7 +72,29 @@
 <script>
 import {useStore} from 'vuex'
 import {computed} from 'vue'
+// import {Dialog} from 'vant';
 
+// //  退出登录的弹窗 (无效）
+// function useLogout(store) {
+//   const onLogout = () => {
+// // const useLogout = (onLogout) => {
+// Dialog.confirm({
+//   title: '确认退出吗'
+// })
+//     .then(() => {
+//       // on confirm
+//       // console.log('确认执行')
+//       store.commit('setUser', null)
+//     })
+//     .catch(() => {
+//       // on cancel
+//       console.log('取消执行')
+//     });
+// return {
+//   onLogout
+// }
+// }
+// }
 export default {
   name: "Index",
   setup() {
@@ -76,6 +104,7 @@ export default {
       userState
     }
   }
+
 }
 </script>
 
@@ -96,10 +125,10 @@ export default {
       flex-direction: column;
       padding-top: 20%;
 
-        .login-text {
-          color: #f6f6f6;
-          margin-top: 10px;
-          text-align: center;
+      .login-text {
+        color: #f6f6f6;
+        margin-top: 10px;
+        text-align: center;
 
 
       }

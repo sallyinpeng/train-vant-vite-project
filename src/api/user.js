@@ -8,3 +8,23 @@ export const login = (data) => {
         data,
     })
 }
+
+// 封装用户自己完整的信息
+export const getUserInfo = (id) => {
+    return request({
+        method: 'GET',
+        url: 'user/info',
+        params: {userId: id},
+        headers: {
+            Authorization: `Bearer ${store.state.user.myToken}`
+        }
+    })
+}
+
+// 获取用户频道列表数据
+export const getUserChannels =() =>{
+    return request({
+        method: 'GET',
+        url: 'user/channels'
+    })
+}

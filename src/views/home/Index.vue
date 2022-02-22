@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <van-nav-bar class="page-nav-bar">
+    <van-nav-bar class="page-nav-bar" fixed>
       <template #right>
         <van-button
             class="search-button"
@@ -42,7 +42,7 @@
 
 <script>
 import {ref} from 'vue';
-import ArticleList from "../../components/ArticleList.vue";
+import ArticleList from "./ArticleList.vue";
 // import {ref, reactive, onMounted, toRefs} from 'vue';
 // import {getUserChannels} from '../../api/user'
 
@@ -98,7 +98,16 @@ export default {
     }
   }
 
+  :deep(.van-tabs__wrap) {
+    position: fixed;
+    top: 46px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
   .channels-tabs {
+
+
     :deep(.van-tab) {
       width: 120px;
       border-right: 1px solid #f5f5f5;

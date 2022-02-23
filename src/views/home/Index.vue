@@ -39,22 +39,23 @@
             class="nav-btn"
             @click="showPopup"></van-icon>
       </template>
-      <van-cell>
-        <van-popup
-            closeable
-            v-model:show="isChannelEditShow"
-            position="top"
-            close-icon-position="top-left"
-            :style="{ height: '100%' }"
-        />
-      </van-cell>
     </van-tabs>
+      <van-popup
+          closeable
+          v-model:show="isChannelEditShow"
+          position="top"
+          close-icon-position="top-left"
+          :style="{ height: '100%' }"
+      >
+        <Channel-edit></Channel-edit>
+      </van-popup>
   </div>
 </template>
 
 <script>
 import {ref} from 'vue';
 import ArticleList from "./ArticleList.vue";
+import ChannelEdit from "./ChannelEdit.vue";
 // import {ref, reactive, onMounted, toRefs} from 'vue';
 // import {getUserChannels} from '../../api/user'
 
@@ -77,7 +78,7 @@ import ArticleList from "./ArticleList.vue";
 
 export default {
   name: "Index",
-  components: {ArticleList},
+  components: {ArticleList,ChannelEdit},
   setup() {
     const active = ref(0);
     const isChannelEditShow = ref(false);

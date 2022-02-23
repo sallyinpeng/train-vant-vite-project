@@ -34,8 +34,20 @@
       </van-tab>
       <template #nav-right>
         <i class="placeholder"></i>
-        <van-icon name="wap-nav" class="nav-btn"></van-icon>
+        <van-icon
+            name="wap-nav"
+            class="nav-btn"
+            @click="showPopup"></van-icon>
       </template>
+      <van-cell>
+        <van-popup
+            closeable
+            v-model:show="isChannelEditShow"
+            position="top"
+            close-icon-position="top-left"
+            :style="{ height: '100%' }"
+        />
+      </van-cell>
     </van-tabs>
   </div>
 </template>
@@ -68,9 +80,13 @@ export default {
   components: {ArticleList},
   setup() {
     const active = ref(0);
+    const isChannelEditShow = ref(false);
+    const showPopup = () => {
+      isChannelEditShow.value = true;
+    };
     // const {state} = useChannels()
     // return {active, ...toRefs(state)};
-    return {active,};
+    return {active, isChannelEditShow, showPopup};
   }
 }
 </script>
@@ -105,6 +121,7 @@ export default {
     right: 0;
     z-index: 1;
   }
+
   .channels-tabs {
 
 

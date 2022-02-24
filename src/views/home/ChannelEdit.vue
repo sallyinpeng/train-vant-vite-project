@@ -4,16 +4,27 @@
       <template #title>
         <span class="title-text">我的频道</span>
       </template>
-      <van-button plain round type="danger" size="small" class="edit-btn">编辑</van-button>
+      <template #value>
+        <van-button plain round type="danger" size="small" class="edit-btn" @click="isEdit=!isEdit">编辑</van-button>
+      </template>
     </van-cell>
     <van-grid :gutter="10" class="my-grid">
       <van-grid-item
-          v-for="value in 8"
-          :key="value"
-          icon="clear"
-          text="文字"
+          v-for="(item,index) in myChannels"
+          :key="item.name"
+
           class="my-grid-item"
-      />
+      >
+        <template #default>
+          <van-icon name="clear" v-show="isEdit"></van-icon>
+          <span
+              class="text"
+              :class="{active:index===active}"
+          >
+          {{ item.name }}
+        </span>
+        </template>
+      </van-grid-item>
     </van-grid>
     <van-cell>
       <template #title>
@@ -22,10 +33,10 @@
     </van-cell>
     <van-grid :gutter="10" class="recommend-grid">
       <van-grid-item
-          v-for="value in 8"
-          :key="value"
+          v-for="item in moreChannels"
+          :key="item.name"
           icon="plus"
-          text="文字好"
+          :text="item.name"
           class="recommend-grid-item"
       />
     </van-grid>
@@ -33,8 +44,49 @@
 </template>
 
 <script>
+import {reactive, toRefs} from "vue";
+
 export default {
-  name: "ChannelEdit"
+  name: "ChannelEdit",
+  props: {
+    // myChannels:{
+    //   type:Array,
+    //   required:true,
+    // }
+    active: {
+      type: Number,
+      required: true
+    }
+  },
+  setup() {
+    const state = reactive({
+      isEdit: false,
+    })
+    return {
+      ...toRefs(state)
+    }
+  },
+  data() {
+    return {
+      myChannels: [
+        {name: '推荐'},
+        {name: 'Vue'},
+        {name: 'React'},
+        {name: 'JQuery'},
+        {name: 'Ant Design'},
+        {name: 'MongoDB'},
+        {name: 'Docker'},
+        {name: 'Koa'}
+      ],
+      moreChannels: [
+        {name: 'Net Core'},
+        {name: 'Java'},
+        {name: 'C++'},
+        {name: 'Go'},
+        {name: 'Jscript'}
+      ]
+    }
+  }
 }
 </script>
 
@@ -69,6 +121,17 @@ export default {
       top: -5px;
       right: -5px;
       z-index: 2;
+      color: #cacaca;
+    }
+
+    .text {
+      font-size: 16px;
+      color: #222;
+      margin-top: 0;
+
+      &.active {
+        color: red;
+      }
     }
   }
 

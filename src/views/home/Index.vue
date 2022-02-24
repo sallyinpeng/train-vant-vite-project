@@ -32,6 +32,9 @@
       <van-tab title="MongoDB">
         <ArticleList/>
       </van-tab>
+      <van-tab title="Docker">
+        <ArticleList/>
+      </van-tab>
       <template #nav-right>
         <i class="placeholder"></i>
         <van-icon
@@ -40,15 +43,15 @@
             @click="showPopup"></van-icon>
       </template>
     </van-tabs>
-      <van-popup
-          closeable
-          v-model:show="isChannelEditShow"
-          position="top"
-          close-icon-position="top-left"
-          :style="{ height: '100%' }"
-      >
-        <Channel-edit></Channel-edit>
-      </van-popup>
+    <van-popup
+        closeable
+        v-model:show="isChannelEditShow"
+        position="top"
+        close-icon-position="top-left"
+        :style="{ height: '100%' }"
+    >
+      <Channel-edit :active="active"></Channel-edit>
+    </van-popup>
   </div>
 </template>
 
@@ -78,7 +81,7 @@ import ChannelEdit from "./ChannelEdit.vue";
 
 export default {
   name: "Index",
-  components: {ArticleList,ChannelEdit},
+  components: {ArticleList, ChannelEdit},
   setup() {
     const active = ref(0);
     const isChannelEditShow = ref(false);
